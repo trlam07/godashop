@@ -1,4 +1,5 @@
 const productModel = require('../models/Product');
+const numeral = require('numeral');
 
 class StudentController {
     // hàm hiển thị danh sách
@@ -12,7 +13,8 @@ class StudentController {
             //SELECT * FROM view_product ORDER BY featured DESC LIMIT 0, 4
             const featuredProducts = await productModel.getBy(conds, sorts, page, item_per_page)
             res.render('home/index', {
-                featuredProducts: featuredProducts
+                featuredProducts: featuredProducts,
+                numeral: numeral
             });
             res.end()
         } catch (error) {
