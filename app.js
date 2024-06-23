@@ -9,8 +9,18 @@ const app = express();
 const port = 3000;
 
 app.use(ejsLayouts)
+
+//import global helpers cho toàn bộ project
+const helpers = require('./utils/helpers');
+app.locals.helpers = helpers; //đưa helpers vào app
+
+//views là đường dẫn dẫn đến thư mục
 app.set('views', './views')
+
+//chỉ định view engine
 app.set('view engine', 'ejs')
+
+
 
 // chỉ định thư mục public chứa các file css, image, js, ...
 app.use(express.static(path.join(__dirname, 'public')))
