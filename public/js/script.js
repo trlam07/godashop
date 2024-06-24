@@ -8,8 +8,17 @@ function closeMenuMobile() {
     $(".btn-menu-mb").show("slow");
 }
 
-
+//document ready: toàn bộ trang web được tải lên, code bên trong {...} mới chạy
 $(function () {
+
+    //tìm kiếm theo range
+    $('main .price-range input').click(function (event) {
+        //Act on the event
+        //var currentRoute = $('main.price-range').attr('currentRoute');
+        var price_range = $(this).val();
+        //window.location.href = 'https://vnexpress.net';
+        window.location.href = `?price-range=${price_range}`;
+    })
 
 
     $(".product-container").hover(function () {

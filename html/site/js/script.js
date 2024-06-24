@@ -11,6 +11,19 @@ function closeMenuMobile() {
 
 $(function () {
 
+    // //tìm kiếm theo range
+    // $('main .price-range input').click(function (event) {
+    //     //Act on the event
+    //     var currentRoute = $('main.price-range').attr('currentRoute');
+    //     var price_range = $(this).val();
+    //     //window.location.href = 'https://vnexpress.net';
+    //     if(currentRoute === 'productDetail') {
+    //         window.location.href = `/san-pham.html?price-range=${price_range}`;
+    //     } else {
+    //         window.location.href = `?price-range=${price_range}`;
+    //     }
+    // })
+
 
     $(".product-container").hover(function () {
         $(this).children(".button-product-action").toggle(400);

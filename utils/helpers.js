@@ -9,8 +9,8 @@ exports.formatMoney = (money) => {
 }
 
 exports.genRouteCategory = (category) => {
-    //hiển thị đường link: /danh-muc/kem-chống-nắng/c3.html
-    const slug = slugify(category.name, {lower: false});
+    //hiển thị đường link: /danh-muc/kem-trị-mụn/c3.html
+    const slug = slugify(category.name, {lower: true});
     const category_id = category.id;
     return `/danh-muc/${slug}/c${category_id}.html`
 }
