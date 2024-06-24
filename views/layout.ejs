@@ -29,12 +29,12 @@
             <div class="top-navbar container-fluid">
                 <div class="menu-mb">
                     <a href="javascript:void(0)" class="btn-close" onclick="closeMenuMobile()">×</a>
-                    <a class="active" href="index.html">Trang chủ</a>
-                    <a href="san-pham.html">Sản phẩm</a>
-                    <a href="chinh-sach-doi-tra.html">Chính sách đổi trả</a>
-                    <a href="chinh-sach-thanh-toan.html">Chính sách thanh toán</a>
-                    <a href="chinh-sach-giao-hang.html">Chính sách giao hàng</a>
-                    <a href="lien-he.html">Liên hệ</a>
+                    <a class="<%= currentRoute == 'home' ? 'active' : '' %>" href="/">Trang chủ</a>
+                    <a href="<%= currentRoute == 'product' ? 'active' : '' %>">Sản phẩm</a>
+                    <a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a>
+                    <a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a>
+                    <a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a>
+                    <a href="/lien-he.html">Liên hệ</a>
                 </div>
                 <div class="row">
                     <div class="hidden-lg hidden-md col-sm-2 col-xs-1">
@@ -100,14 +100,14 @@
         <nav class="navbar navbar-default desktop-menu">
             <div class="container">
                 <ul class="nav navbar-nav navbar-left hidden-sm hidden-xs">
-                    <li class="active">
-                        <a href="index.html">Trang chủ</a>
+                    <li class="<%= currentRoute == 'home' ? 'active' : '' %>">
+                        <a href="/">Trang chủ</a>
                     </li>
-                    <li ><a href="san-pham.html">Sản phẩm </a></li>
-                    <li><a href="chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
-                    <li><a href="chinh-sach-thanh-toan.html">Chính sách thanh toán</a></li>
-                    <li><a href="chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
-                    <li><a href="lien-he.html">Liên hệ</a></li>
+                    <li class="<%= currentRoute == 'product' ? 'active' : '' %>"><a href="/san-pham.html">Sản phẩm </a></li>
+                    <li><a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
+                    <li><a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a></li>
+                    <li><a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
+                    <li><a href="/lien-he.html">Liên hệ</a></li>
                 </ul>
                 <span class="hidden-lg hidden-md experience">Trải nghiệm cùng sản phẩm của Goda</span>
                 <ul class="nav navbar-nav navbar-right">

@@ -38,9 +38,15 @@ app.use(session({
     saveUninitialized: true,
   }))
 
-const homeRouter = require('./routers/HomeRouter');
+const indexRouter = require('./routers/IndexRouter');
 
-app.use('/', homeRouter);
+//middleware: tham số của middleware là callback function, ở đây là arrow function
+app.use((req, res, next) => {
+  app.locals.currentRoute = helpers.getCurrentRoute(req.path);
+  next();
+});
+
+app.use('/', indexRouter);
 //app.use('/admin', adminRouter);
 
 console.log(process.env.DB_NAME)
