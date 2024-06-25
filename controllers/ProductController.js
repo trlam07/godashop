@@ -48,6 +48,27 @@ class ProductController {
                 }
             }
 
+            //sort=price-asc
+            const sort = req.query.sort;
+            if(sort) {
+                const temp = sort.split('-');
+                const dummyColName = temp[0]; //price
+                const order = temp[1].toUpperCase(); //asc => ASC
+                const map = {
+                    price: 'sale_price',
+                    alpha: 'name',
+                    created: 'created_date'
+                }
+                //truy xuất giá trị của thuộc tính theo cách 2
+                const colName = map[dummyColName];
+                sorts = {
+                    //sale_price: ASC
+                    //chuyển giá trị của biến thành thuộc tính thì dùng []
+                    [colName]: order
+                }
+                //console.log(sorts)
+                //SELECT * FROM view_product ORDER BY sale_price ASC
+            }
             const products = await productModel.getBy(conds, sorts, page, item_per_page)
             //lấy tất cả các danh mục
             const categories = await categoryModel.all();
@@ -55,7 +76,8 @@ class ProductController {
                 products: products,
                 categories: categories,
                 category_id: category_id,
-                priceRange
+                priceRange: priceRange,
+                sort: sort
             });
         } catch (error) {
             res.status(500).send(error.message)

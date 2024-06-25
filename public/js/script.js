@@ -11,6 +11,12 @@ function closeMenuMobile() {
 //document ready: toàn bộ trang web được tải lên, code bên trong {...} mới chạy
 $(function () {
 
+    // Tìm kiếm và sắp xếp sản phẩm
+    $('#sort-select').change(function (event) {
+        var fullURL = getUpdatedParam("sort", $(this).val());
+        window.location.href = fullURL;
+    });
+
     //tìm kiếm theo range
     $('main .price-range input').click(function (event) {
         //Act on the event
@@ -165,4 +171,12 @@ function onSignIn(googleUser) {
         console.log('Signed in as: ' + xhr.responseText);
     };
     xhr.send('idtoken=' + id_token);
+}
+
+// Cập nhật giá trị của 1 param cụ thể
+function getUpdatedParam(k, v) {//sort, price-asc
+    const fullUrl = window.location.href;
+    const objUrl = new URL(fullUrl);
+    objUrl.searchParams.set(k, v);
+    return objUrl.toString();
 }

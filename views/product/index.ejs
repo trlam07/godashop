@@ -92,13 +92,13 @@
                         <div class="pull-right">
                             <label class="left hidden-xs" for="sort-select">Sắp xếp: </label>
                             <select id="sort-select">
-                                <option value="" selected >Mặc định</option>
-                                <option  value="price-asc">Giá tăng dần</option>
-                                <option  value="price-desc">Giá giảm dần</option>
-                                <option  value="alpha-asc">Từ A-Z</option>
-                                <option  value="alpha-desc">Từ Z-A</option>
-                                <option  value="created-asc">Cũ đến mới</option>
-                                <option  value="created-desc">Mới đến cũ</option>
+                                <option value="" >Mặc định</option>
+                                <option  value="price-asc" <%= sort == 'price-asc' ? 'selected' : '' %> >Giá tăng dần</option>
+                                <option  value="price-desc" <%= sort == 'price-desc' ? 'selected' : '' %> >Giá giảm dần</option>
+                                <option  value="alpha-asc" <%= sort == 'alpha-asc' ? 'selected' : '' %> >Từ A-Z</option>
+                                <option  value="alpha-desc" <%= sort == 'alpha-desc' ? 'selected' : '' %> >Từ Z-A</option>
+                                <option  value="created-asc" <%= sort == 'created-asc' ? 'selected' : '' %> >Cũ đến mới</option>
+                                <option  value="created-desc" <%= sort == 'created-desc' ? 'selected' : '' %> >Mới đến cũ</option>
                             </select>
                         </div>
                     </div>
