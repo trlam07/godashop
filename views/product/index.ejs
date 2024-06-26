@@ -109,14 +109,7 @@
                     </div>
                     <%} %>
                 </div>
-                <!-- Paging -->
-                <ul class="pagination pull-right">
-                    <li class="active"><a href="javascript:void(0)" onclick="goToPage(1)">1</a></li>
-                    <li class=""><a href="javascript:void(0)" onclick="goToPage(2)">2</a></li>
-                    <li class=""><a href="javascript:void(0)" onclick="goToPage(3)">3</a></li>
-                    <li><a href="javascript:void(0)" onclick="goToPage(2)">&raquo;</a></li>
-                </ul>
-                <!-- End paging -->
+                <%- include('../pagination.ejs', {totalPage: totalPage, page: page}) %>
             </div>
         </div>
     </div>

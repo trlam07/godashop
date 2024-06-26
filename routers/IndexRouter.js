@@ -13,4 +13,7 @@ router.get('/san-pham.html', ProductController.index)
 //slug và category_id là do ta đặt
 router.get('/danh-muc/:slug/c:category_id.html', ProductController.index)
 
+//tìm kiếm
+router.get('/search', ProductController.index)
+
 module.exports = router;

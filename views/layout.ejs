@@ -78,15 +78,13 @@
                             <p class="hotline-phone"><span><strong>Hotline: </strong><a href="tel:0932.538.468">0932.538.468</a></span></p>
                             <p class="hotline-email"><span><strong>Email: </strong><a href="mailto:nguyenhuulocla2006@gmail.com">nguyenhuulocla2006@gmail.com</a></span></p>
                         </div>
-                        <form class="header-form" action="">
+                        <form class="header-form" action="/search">
                             <div class="input-group">
-                                <input type="search" class="form-control search" placeholder="Nhập từ khóa tìm kiếm" name="search" autocomplete="off" value="">
+                                <input type="search" class="form-control search" placeholder="Nhập từ khóa tìm kiếm" name="search" autocomplete="off" value="<%= typeof(search) !== 'undefined' ? 'search' : '' %>">
                                 <div class="input-group-btn">
                                     <button class="btn bt-search bg-color" type="submit"><i class="fa fa-search" style="color:#fff"></i>
                                     </button>
                                 </div>
-                                <input type="hidden" name="c" value="product">
-                                <input type="hidden" name="a" value="list">
                             </div>
                             <div class="search-result">
                             </div>

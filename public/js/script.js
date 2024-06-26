@@ -180,3 +180,10 @@ function getUpdatedParam(k, v) {//sort, price-asc
     objUrl.searchParams.set(k, v);
     return objUrl.toString();
 }
+
+// Paging
+function goToPage(page) {
+    var fullUrl = getUpdatedParam("page", page);
+    window.location.href = fullUrl;
+    // window.location.href = 'https://vnexpress.net';
+}

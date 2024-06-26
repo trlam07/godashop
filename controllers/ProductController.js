@@ -5,7 +5,10 @@ class ProductController {
     // hàm hiển thị danh sách
     static index = async(req, res) => {
         try {
-            const page = 1;
+            const page = req.query.page || 1;
+            //or: const page = req.query.page == undefined ? 1 : req.query.page
+            console.log(req.query.page);
+
             const item_per_page = process.env.PRODUCT_ITEM_PER_PAGE; //số lượng sản phẩm/trang
             let conds = []; //không có điều kiện
             let sorts = []; 
@@ -69,7 +72,23 @@ class ProductController {
                 //console.log(sorts)
                 //SELECT * FROM view_product ORDER BY sale_price ASC
             }
-            const products = await productModel.getBy(conds, sorts, page, item_per_page)
+
+            const search = req.query.search;
+            if(search) {
+                conds = {
+                    name: {
+                        type: 'LIKE',
+                        val: `'%${search}%'`
+                    }
+                };
+                //SELECT * FROM view_product WHERE name LIKE '% kem %'
+            }
+            const products = await productModel.getBy(conds, sorts, page, item_per_page);
+
+            //tìm totalPage để phân trang
+            const allProducts = await productModel.getBy(conds, sorts);
+            //Math.ceil: làm tròn lên
+            const totalPage = Math.ceil(allProducts.length / item_per_page)
             //lấy tất cả các danh mục
             const categories = await categoryModel.all();
             res.render('product/index', {
@@ -77,7 +96,10 @@ class ProductController {
                 categories: categories,
                 category_id: category_id,
                 priceRange: priceRange,
-                sort: sort
+                sort: sort,
+                totalPage: totalPage,
+                page: page,
+                search: search
             });
         } catch (error) {
             res.status(500).send(error.message)
