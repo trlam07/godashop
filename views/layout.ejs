@@ -31,9 +31,9 @@
                     <a href="javascript:void(0)" class="btn-close" onclick="closeMenuMobile()">×</a>
                     <a class="<%= currentRoute == 'home' ? 'active' : '' %>" href="/">Trang chủ</a>
                     <a href="<%= currentRoute == 'product' ? 'active' : '' %>">Sản phẩm</a>
-                    <a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a>
-                    <a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a>
-                    <a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a>
+                    <a class="<%= currentRoute == 'returnPolicy' ? 'active' : '' %>" href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a>
+                    <a class="<%= currentRoute == 'paymentPolicy' ? 'active' : '' %>" href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a>
+                    <a class="<%= currentRoute == 'deliveryPolicy' ? 'active' : '' %>" href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a>
                     <a href="/lien-he.html">Liên hệ</a>
                 </div>
                 <div class="row">
@@ -101,10 +101,10 @@
                     <li class="<%= currentRoute == 'home' ? 'active' : '' %>">
                         <a href="/">Trang chủ</a>
                     </li>
-                    <li class="<%= currentRoute == 'product' ? 'active' : '' %>"><a href="/san-pham.html">Sản phẩm </a></li>
-                    <li><a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
-                    <li><a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a></li>
-                    <li><a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
+                    <li class="<%= ['product', 'category'].includes(currentRoute) ? 'active' : '' %>"><a href="/san-pham.html">Sản phẩm </a></li>
+                    <li class="<%= currentRoute == 'returnPolicy' ? 'active' : '' %>"><a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
+                    <li class="<%= currentRoute == 'paymentPolicy' ? 'active' : '' %>"><a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a></li>
+                    <li class="<%= currentRoute == 'deliveryPolicy' ? 'active' : '' %>"><a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
                     <li><a href="/lien-he.html">Liên hệ</a></li>
                 </ul>
                 <span class="hidden-lg hidden-md experience">Trải nghiệm cùng sản phẩm của Goda</span>

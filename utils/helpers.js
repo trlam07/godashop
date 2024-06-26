@@ -31,4 +31,20 @@ exports.getCurrentRoute = (path) => {
     if(path.match(/^san-pham.html$/)) {
         return 'product';
     }
+
+    if(path.match(/^danh-muc/)) {
+        return 'category';
+    }
+
+    if(path.match(/^chinh-sach-doi-tra.html$/)) {
+        return 'returnPolicy';
+    }
+
+    if(path.match(/^chinh-sach-thanh-toan.html$/)) {
+        return 'paymentPolicy';
+    }
+
+    if(path.match(/^chinh-sach-giao-hang.html$/)) {
+        return 'deliveryPolicy';
+    }
 }
