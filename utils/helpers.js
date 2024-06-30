@@ -31,9 +31,19 @@ exports.getCurrentRoute = (path) => {
     if(path.match(/^san-pham.html$/)) {
         return 'product';
     }
-
+    //tìm kiếm theo danh mục
     if(path.match(/^danh-muc/)) {
         return 'category';
+    }
+
+    //tìm kiếm theo từ khóa
+    if(path.match(/^search/)) {
+        return 'search';
+    }
+
+    //liên hệ
+    if(path.match(/^lien-he.html$/)) {
+        return 'contact';
     }
 
     if(path.match(/^chinh-sach-doi-tra.html$/)) {

@@ -10,6 +10,78 @@ function closeMenuMobile() {
 
 //document ready: toàn bộ trang web được tải lên, code bên trong {...} mới chạy
 $(function () {
+    $(".form-contact").validate({
+        rules: {
+            // simple rule, converted to {required:true}
+            fullname: {
+                required: true,
+                maxlength: 50,
+                regex: /^[a-zA￾ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/i
+
+            },
+            // compound rule
+            email: {
+                required: true,
+                email: true
+            },
+            mobile: {
+                required: true,
+                regex: /^0([0-9]{9,9})$/
+            },
+            content: {
+                required: true
+            }
+        },
+
+        messages: {
+            fullname: {
+                required: 'Vui lòng nhập họ và tên',
+                maxlength: 'Vui lòng nhập không quá 50 ký tự',
+                regex: 'Vui lòng nhập đúng họ và tên'
+            },
+            // compound rule
+            mobile: {
+                required: 'Vui lòng nhập số điện thoại',
+                regex: 'Vui lòng nhập đúng định dạng số điện thoại.vd: 0932538468'
+
+            },
+            email: {
+                required: 'Vui lòng nhập email',
+                email: 'Vui lòng nhập đúng định dạng email. vd: abc@gmail.com'
+            },
+            content: {
+                required: 'Vui lòng nhập nội dung'
+            }
+        },
+        submitHandler: function (form) {
+            // alert($(form).serialize());
+            $('.message').html('<i class="fas fa-spinner fa-spin"></i> Hệ thống đang gởi mail, vui lòng chờ ...');
+            $('.message').show();//display:block
+            //jqAjax
+            $.ajax({
+                type: "POST",
+                url: "/contact/sendEmail",
+                data: $(form).serialize(),
+                success: function (response) {
+                    $('.message').html(response);
+                    //reset form
+                    // form.reset();
+                }
+            });
+            // alert(1);
+        }
+    });
+
+    //Kiểm tra dữ liệu thỏa mãn mẫu hay không
+    //Nếu không thì chuỗi Please check your input hiện ra
+    $.validator.addMethod(
+        "regex",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "Please check your input."
+    );
 
     // Tìm kiếm và sắp xếp sản phẩm
     $('#sort-select').change(function (event) {

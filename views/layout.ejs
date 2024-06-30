@@ -19,6 +19,7 @@
         <script type="text/javascript" src="/vendor/star-rating/js/star-rating.min.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="/vendor/format/number_format.js"></script>
+        <script src="/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/js/script.js"></script>
     </head>
     <body>
@@ -30,11 +31,11 @@
                 <div class="menu-mb">
                     <a href="javascript:void(0)" class="btn-close" onclick="closeMenuMobile()">×</a>
                     <a class="<%= currentRoute == 'home' ? 'active' : '' %>" href="/">Trang chủ</a>
-                    <a href="<%= currentRoute == 'product' ? 'active' : '' %>">Sản phẩm</a>
+                    <a class="<%= ['product', 'category', 'search'].includes(currentRoute) ? 'active' : '' %>" href="/san-pham.html">Sản phẩm</a>
                     <a class="<%= currentRoute == 'returnPolicy' ? 'active' : '' %>" href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a>
                     <a class="<%= currentRoute == 'paymentPolicy' ? 'active' : '' %>" href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a>
                     <a class="<%= currentRoute == 'deliveryPolicy' ? 'active' : '' %>" href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a>
-                    <a href="/lien-he.html">Liên hệ</a>
+                    <a class="<%= currentRoute == 'contact' ? 'active' : '' %>" href="/lien-he.html">Liên hệ</a>
                 </div>
                 <div class="row">
                     <div class="hidden-lg hidden-md col-sm-2 col-xs-1">
@@ -80,7 +81,7 @@
                         </div>
                         <form class="header-form" action="/search">
                             <div class="input-group">
-                                <input type="search" class="form-control search" placeholder="Nhập từ khóa tìm kiếm" name="search" autocomplete="off" value="<%= typeof(search) !== 'undefined' ? 'search' : '' %>">
+                                <input type="search" class="form-control search" placeholder="Nhập từ khóa tìm kiếm" name="search" autocomplete="off" value="<%= typeof(search) !== 'undefined' ? search : '' %>">
                                 <div class="input-group-btn">
                                     <button class="btn bt-search bg-color" type="submit"><i class="fa fa-search" style="color:#fff"></i>
                                     </button>
@@ -101,11 +102,11 @@
                     <li class="<%= currentRoute == 'home' ? 'active' : '' %>">
                         <a href="/">Trang chủ</a>
                     </li>
-                    <li class="<%= ['product', 'category'].includes(currentRoute) ? 'active' : '' %>"><a href="/san-pham.html">Sản phẩm </a></li>
+                    <li class="<%= ['product', 'category', 'search'].includes(currentRoute) ? 'active' : '' %>"><a href="/san-pham.html">Sản phẩm </a></li>
                     <li class="<%= currentRoute == 'returnPolicy' ? 'active' : '' %>"><a href="/chinh-sach-doi-tra.html">Chính sách đổi trả</a></li>
                     <li class="<%= currentRoute == 'paymentPolicy' ? 'active' : '' %>"><a href="/chinh-sach-thanh-toan.html">Chính sách thanh toán</a></li>
                     <li class="<%= currentRoute == 'deliveryPolicy' ? 'active' : '' %>"><a href="/chinh-sach-giao-hang.html">Chính sách giao hàng</a></li>
-                    <li><a href="/lien-he.html">Liên hệ</a></li>
+                    <li class="<%= currentRoute == 'contact' ? 'active' : '' %>"><a href="/lien-he.html">Liên hệ</a></li>
                 </ul>
                 <span class="hidden-lg hidden-md experience">Trải nghiệm cùng sản phẩm của Goda</span>
                 <ul class="nav navbar-nav navbar-right">

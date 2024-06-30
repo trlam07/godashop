@@ -3,6 +3,7 @@ const router = express.Router();
 const HomeController = require('../controllers/HomeController');
 const ProductController = require('../controllers/ProductController');
 const InformationController = require('../controllers/InformationController');
+const ContactController = require('../controllers/ContactController');
 
 // hiển thị trang chủ
 router.get('/', HomeController.index)
@@ -25,5 +26,8 @@ router.get('/chinh-sach-thanh-toan.html', InformationController.paymentPolicy)
 
 //chinh-sach-giao-hang.html
 router.get('/chinh-sach-giao-hang.html', InformationController.deliveryPolicy)
+
+//lien-he.html
+router.get('/lien-he.html', ContactController.form)
 
 module.exports = router;
