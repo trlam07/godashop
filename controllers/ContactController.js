@@ -11,23 +11,19 @@ class ContactController {
   //gửi mail liên hệ chủ shop
   static sendEmail = async (req, res) => {
     try {
-      const nodemailer = require("nodemailer");
-        //cấu hình
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true, // Use `true` for port 465, `false` for all other ports
-        auth: {
-          user: "sonlamhbl2022@gmail.com",
-          pass: "cvjg uqww lafj zcbs", //không phải mật khẩu
-        },
-      });
-      await transporter.sendMail({
-        from: "sonlamhbl2022@gmail.com", // sender address
-        to: "trlam1981@gmail.com", // list of receivers
-        subject: "Hello", // Subject line
-        html: "<b>Hello godashop</b>", // html body
-      });
+      const web = `${req.protocol}://${req.headers.host}`;
+      const to = process.env.SHOP_OWNER;
+      const subject = 'Godashop - liên hệ';
+      const content = `
+      Chào chủ Shop, <br>
+      Dưới đây là thông tin khách hàng liên hệ:<br>
+      Tên: ${req.body.fullname} <br>
+      Email: ${req.body.email} <br>
+      Mobile: ${req.body.mobile} <br>
+      Message: ${req.body.content} <br>
+      Được gửi từ trang ${web}
+      `;
+      req.app.locals.helpers.sendEmail(to, subject, content);
 
       res.end("Gửi mail thành công!!!");
     } catch (error) {
