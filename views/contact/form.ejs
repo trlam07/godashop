@@ -28,10 +28,15 @@
                                 oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại bắt đầu bằng số 0 và ít nhất 9 con số theo sau')" oninput="this.setCustomValidity('')">
                             </div>
                             
-                            <div class="form-group col-sm-12">
-                                
+                            <div class="form-group col-sm-12"> 
                                 <textarea class="form-control" placeholder="Nội dung" name="content" rows="10" required></textarea>
                             </div>
+
+                            <div class="form-group col-sm-12"> 
+                                <!-- .message.alert.alert-success -->
+                                 <div class="message alert alert-success" style="display: none;"></div>
+                            </div>
+
                             <div class="form-group col-sm-12">
                                 <button type="submit" class="btn btn-sm btn-primary pull-right">Gửi</button>
                             </div>

@@ -771,6 +771,12 @@ main .product-detail .product-related .owl-next {
     }
 }
 
+label.error{
+    color: red;
+    font-size: 14px;
+    font-weight: normal;
+}
+
 
 
 /*END*/

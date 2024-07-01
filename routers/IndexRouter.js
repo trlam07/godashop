@@ -30,4 +30,7 @@ router.get('/chinh-sach-giao-hang.html', InformationController.deliveryPolicy)
 //lien-he.html
 router.get('/lien-he.html', ContactController.form)
 
+//gửi mail
+router.post('/contact/sendEmail', ContactController.sendEmail)
+
 module.exports = router;
