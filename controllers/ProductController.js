@@ -105,6 +105,17 @@ class ProductController {
             res.status(500).send(error.message)
         }
     }
+
+    static detail = async(req, res) => {
+        try {
+            
+            res.render('product/detail', {
+                
+            });
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
+    }
 }
 
 module.exports = ProductController;

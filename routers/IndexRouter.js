@@ -33,4 +33,7 @@ router.get('/lien-he.html', ContactController.form)
 //gửi mail
 router.post('/contact/sendEmail', ContactController.sendEmail)
 
+//chi tiết sp
+router.get('/san-pham/:slug.html', ProductController.detail)
+
 module.exports = router;

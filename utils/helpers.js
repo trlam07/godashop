@@ -79,3 +79,11 @@ exports.sendEmail = async (to, subject, content) => {
         html: content, // html body
       });
 }
+
+exports.genRouteProductDetail = (product) => {
+    //hiển thị đường link: /danh-muc/kem-trị-mụn/c3.html
+    const slug = slugify(product.name, {lower: true});
+    const id = product.id;
+    // /san-pham/kem-lam-trang-da-5-in-1-cream-127.html
+    return `/san-pham/${slug}-${id}.html`
+}
