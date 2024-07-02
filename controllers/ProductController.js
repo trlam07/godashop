@@ -114,10 +114,31 @@ class ProductController {
             const product = await productModel.find(id);
             const imageItems = await product.getImageItems();
             const brand = await product.getBrand();
+            const comments = await product.getComments();
+            const category_id = product.category_id;
+            const categories = await categoryModel.all();
+
+            const conds = {
+                'category_id': {
+                    'type': '=',
+                    'val': product.category_id
+                },
+                'id': {
+                    'type': '!=',
+                    'val': product.id
+                }
+                //SELECT * FROM view_product WHERE category_id = 3 AND id != 2
+            };
+            const relatedProducts = await product.getBy(conds);
+
             res.render('product/detail', {
                 product: product,
                 imageItems: imageItems,
                 brand: brand,
+                comments: comments,
+                relatedProducts: relatedProducts,
+                category_id: category_id,
+                categories: categories
             });
         } catch (error) {
             res.status(500).send(error.message)

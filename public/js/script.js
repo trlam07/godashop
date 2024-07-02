@@ -214,7 +214,7 @@ $(function () {
 
     // Hiển thị carousel for relative products
     $('main .product-detail .product-related .owl-carousel').owlCarousel({
-        loop: true,
+        //loop: true,
         margin: 10,
         nav: true,
         dots: false,
