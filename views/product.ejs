@@ -8,9 +8,13 @@
         </h5>
         <div class="product-item-price">
             <%if(product.price != product.sale_price) {%>
-                <span class="product-item-regular"><%= helpers.formatMoney(product.price) %>đ</span>
+                <span class="product-item-regular">
+                    <%= helpers.formatMoney(product.price) %>đ
+                </span>
                 <%} %>
-            <span class="product-item-discount"><%= helpers.formatMoney(product.sale_price) %>đ</span>            
+                <span class="product-item-discount">
+                    <%= helpers.formatMoney(product.sale_price) %>đ
+                </span>             
         </div>
     </div>
     <div class="button-product-action clearfix">

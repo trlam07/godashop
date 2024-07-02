@@ -108,9 +108,16 @@ class ProductController {
 
     static detail = async(req, res) => {
         try {
-            
+            const slug = req.params.slug;
+            const temp = slug.split('-');
+            const id = temp[temp.length - 1];
+            const product = await productModel.find(id);
+            const imageItems = await product.getImageItems();
+            const brand = await product.getBrand();
             res.render('product/detail', {
-                
+                product: product,
+                imageItems: imageItems,
+                brand: brand,
             });
         } catch (error) {
             res.status(500).send(error.message)

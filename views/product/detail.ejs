@@ -93,27 +93,40 @@
             <div class="col-md-9 product-detail">
                 <div class="row product-info">
                     <div class="col-md-6">
-                        <img data-zoom-image="/images/kemLamSangVungDaBikini.jpg" class="img-responsive thumbnail main-image-thumbnail" src="/images/kemLamSangVungDaBikini.jpg" alt="">
+                        <img data-zoom-image="/images/<%= product.featured_image%>" class="img-responsive thumbnail main-image-thumbnail" src="/images/<%= product.featured_image%>" alt="">
                         <div class="product-detail-carousel-slider">
                             <div class="owl-carousel owl-theme">
-                                <div class="item thumbnail"><img src="/images/kemLamSangVungDaBikini.jpg" alt=""></div>
-                                <div class="item thumbnail"><img src="/images/beaumoreContourEyeCream.jpg" alt=""></div>
-                                <div class="item thumbnail"><img src="/images/kemChongNangBeaumore4in1.jpg" alt=""></div>
+                                <div class="item thumbnail"><img src="/images/<%= product.featured_image%>" alt=""></div>
+
+                                <% for (const imageItem of imageItems) {%>
+                                <div class="item thumbnail"><img src="/images/<%= imageItem.name%>" alt=""></div>
+                                <%}%>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h5 class="product-name">Kem làm sáng vùng da bikini Beaumore- 50ml</h5>
+                        <h5 class="product-name"><%= product.name%></h5>
                         <div class="brand">
-                            <span>Nhãn hàng: </span> <span>REDWIN</span> 
+                            <span>Nhãn hàng: </span> <span><%= brand.name%></span> 
                         </div>
                         <div class="product-status"> 
                             <span>Trạng thái: </span>
-                            <span class="label-warning">Hết hàng</span>
+                            <% if (product.inventory_qty > 0) {%>
+                            <span class="label-success">Còn hàng</span>
+                            <%} else {%>
+                                <span class="label-warning">Hết hàng</span>
+                                <%}%>
                         </div>
                         <div class="product-item-price">
                             <span>Giá: </span>
-                            <span class="product-item-discount">849,000₫</span>            
+                            <% if (product.price != product.sale_price) {%>
+                            <span class="product-item-regular" style="display: inline;">
+                                <%= helpers.formatMoney(product.price)%>₫
+                            </span>
+                            <%}%> 
+                            <span class="product-item-discount" style="display: inline; color:blue">
+                                <%= helpers.formatMoney(product.sale_price)%>₫
+                            </span>           
                         </div>
                     </div>
                 </div>
@@ -133,20 +146,7 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="product-description">   
                                 <p>Mô tả chi tiết</p>
-                                <p>– Với chiết từ lá dâu tằm, chất Arbutin trong quả dâu gấu cùng các thành phần thảo dược thiên nhiên giúp tăng cường hàng rào biểu bì, ngăn ngừa lão hóa da</p>
-
-                                <p>– Làm da trắng sáng, giữ ẩm và tăng độ đàn hồi cho da</p>
-
-                                <p>– Diệt khuẩn, kháng viêm, làm mịn và sáng vùng bikini</p>
-
-                                <p>– Tăng cường hàng rào biểu bì, giữ ẩm, ngăn ngừa lão hóa da</p>
-
-                                <p>– Tăng dộ đàn hồi cho da, mang lại vẻ sáng và mềm mại cho da</p>
-
-                                <p>– Làm sáng da bằng cách ức chế sự hình thành của Melanin</p>
-
-                                <p>– Chăm sóc da bị kích ứng và tấy đỏ, chống bong tróc. Giúp làm giảm các ban đỏ gây ra bởi tia UV cháy nắng.</p>
-                            
+                                <%- helpers.sanitizeData(product.description) %>                            
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="product-comment">
                                     <form class="form-comment" action="" method="POST" role="form">
