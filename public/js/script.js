@@ -10,6 +10,71 @@ function closeMenuMobile() {
 
 //document ready: toàn bộ trang web được tải lên, code bên trong {...} mới chạy
 $(function () {
+    // SUBMIT COMMENT
+    $("form.form-comment").validate({
+        rules: {
+            // simple rule, converted to {required:true}
+            fullname: {
+                required: true,
+                maxlength: 200,
+                regex:
+                    /^[a-zA￾ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/i,
+            },
+            email: {
+                required: true,
+                email: true
+            },
+
+            description: {
+                required: true,
+            },
+        },
+
+        messages: {
+            fullname: {
+                required: "Vui lòng nhập họ và tên",
+                maxlength: "Vui lòng nhập không quá 50 ký tự",
+                regex: "Vui lòng nhập đúng định họ và tên",
+            },
+            email: {
+                required: 'Vui lòng nhập email',
+                email: 'Vui lòng nhập đúng định dạng email'
+            },
+            description: {
+                required: 'Vui lòng nhập nội dung',
+            },
+        },
+
+        submitHandler: function (form) {
+            // alert('haha');
+            // alert($(form).serialize());
+            $('.message').html('<i class="fas fa-spinner fa-spin"></i> Hệ thống đang gởi đánh giá, vui lòng chờ ...');
+            $('.message').show();
+
+            $.ajax({
+                type: "POST",
+                url: "/comments",
+                // Lấy dữ liệu trong form và gởi lên server
+                data: $(form).serialize(),
+                success: function (response) {
+                    $('.comment-list').html(response);
+                    $('.message').hide();
+                    // Chuyển giá trị trong thẻ input thành số sao
+                    updateAnsweredRating();
+                    form.reset();
+                },
+                error: function (xhr, status, error) {
+
+                    $('.message').html(xhr.responseText);
+                    $('.message').removeClass('alert-success');
+                    $('.message').addClass('alert-danger');
+                    //reset form
+                    // form.reset();
+                }
+            });
+        }
+    });
+
     $(".form-contact").validate({
         rules: {
             // simple rule, converted to {required:true}
@@ -185,7 +250,8 @@ $(function () {
         showClear: false,
         showCaption: false
     });
-
+    //chuyển số thành dấu * (rating)
+function updateAnsweredRating() {
     $('main .product-detail .product-description .answered-rating-input').rating({
         min: 0,
         max: 5,
@@ -197,6 +263,8 @@ $(function () {
         displayOnly: false,
         hoverEnabled: true
     });
+}
+    
 
     $('main .ship-checkout[name=payment_method]').click(function (event) {
         /* Act on the event */

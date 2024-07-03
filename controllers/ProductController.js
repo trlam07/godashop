@@ -1,5 +1,6 @@
 const productModel = require('../models/Product');
 const categoryModel = require('../models/Category');
+const commentModel = require('../models/Comment')
 
 class ProductController {
     // hàm hiển thị danh sách
@@ -139,6 +140,29 @@ class ProductController {
                 relatedProducts: relatedProducts,
                 category_id: category_id,
                 categories: categories
+            });
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
+    }
+
+    static storeComment = async(req, res) => {
+        try {
+            
+            const data = {
+                product_id: req.body.product_id,
+                email: req.body.email,
+                fullname: req.body.fullname,
+                star: req.body.rating,
+                created_date: req.app.locals.helpers.getCurrentDateTime(),
+                description: req.body.description
+            }
+            await commentModel.save(data);
+            const product = await productModel.find(data.product_id);
+            const comments = await product.getComments();
+            res.render('product/comments', {
+                comments: comments,
+                layout: false
             });
         } catch (error) {
             res.status(500).send(error.message)

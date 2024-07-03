@@ -36,4 +36,7 @@ router.post('/contact/sendEmail', ContactController.sendEmail)
 //chi tiết sp
 router.get('/san-pham/:slug.html', ProductController.detail)
 
+//lưu đánh giá (ajax)
+router.post('/comments', ProductController.storeComment)
+
 module.exports = router;

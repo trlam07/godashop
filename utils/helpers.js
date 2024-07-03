@@ -97,3 +97,9 @@ exports.sanitizeData = (data) => {
   const clean = DOMPurify.sanitize(data);
   return clean;
 };
+
+exports.getCurrentDateTime = () => {
+  const {format} = require('date-fns');
+  //2023/09/16 10:40:20
+  return format(new Date(), 'yyyy-MM-dd H:i:s');
+};

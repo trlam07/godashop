@@ -1,0 +1,16 @@
+<% for (const comment of comments) {%>
+    <hr />
+    <span class="date pull-right"
+      ><%= comment.created_date%></span
+    >
+    <input
+      class="answered-rating-input"
+      name="rating"
+      type="text"
+      title=""
+      value="<%= comment.star%>"
+      readonly
+    />
+    <span class="by"><%= comment.fullname%></span>
+    <p><%= helpers.sanitizeData(comment.description)%></p>
+    <%}%>
