@@ -115,6 +115,8 @@
             </div>
         </nav>
 
+        <%- include('message.ejs')%>
+
         <%- body%>
         
         <!-- FOOTER -->
@@ -238,7 +240,7 @@
                             <a class="btn btn-primary facebook-login" href="#"><i class="fab fa-facebook-f"></i> Đăng nhập bằng Facebook</a>
                         </div>
                     </div>
-                    <form action="#" method="POST" role="form">
+                    <form action="/login" method="POST" role="form">
                         <div class="modal-body">
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" placeholder="Email" required>

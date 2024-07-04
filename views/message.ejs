@@ -1,0 +1,5 @@
+<!-- hiển thị message -->
+			<!-- nếu có message success -->
+			<% if (typeof session.message_success !== 'undefined'){%><div class="alert alert-success mt-3"><%= session.message_success %></div><%}%>
+
+			<% if(typeof session.message_error !== 'undefined') {%><div class="alert alert-danger mt-3"><%= session.message_error %></div><%}%>

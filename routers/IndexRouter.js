@@ -4,6 +4,7 @@ const HomeController = require('../controllers/HomeController');
 const ProductController = require('../controllers/ProductController');
 const InformationController = require('../controllers/InformationController');
 const ContactController = require('../controllers/ContactController');
+const AuthController = require('../controllers/AuthController');
 
 // hiển thị trang chủ
 router.get('/', HomeController.index)
@@ -38,5 +39,8 @@ router.get('/san-pham/:slug.html', ProductController.detail)
 
 //lưu đánh giá (ajax)
 router.post('/comments', ProductController.storeComment)
+
+//login
+router.post('/login', AuthController.login)
 
 module.exports = router;
