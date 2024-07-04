@@ -42,12 +42,10 @@ class HomeController {
                     products: products
                 })
             }
-            const session = req.session;
             res.render('home/index', {
                 featuredProducts: featuredProducts,
                 latestProducts: latestProducts,
                 categoryProducts: categoryProducts,
-                session: session,
             });
         } catch (error) {
             res.status(500).send(error.message)

@@ -43,6 +43,7 @@ const indexRouter = require('./routers/IndexRouter');
 //middleware: tham số của middleware là callback function, ở đây là arrow function
 app.use((req, res, next) => {
   app.locals.currentRoute = helpers.getCurrentRoute(req.path);
+  app.locals.session = req.session;
   next();
 });
 

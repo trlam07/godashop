@@ -7,6 +7,7 @@ class AuthController {
             const customer = await customerModel.findEmail(email);
             console.log(customer)
             if(!customer) {
+                // req.app.locals.session.message_error = `Lỗi: không tồn tại ${email} trong hệ thống!`;
                 req.session.message_error = `Lỗi: không tồn tại ${email} trong hệ thống!`;
                 //sau khi session được lưu thì sẽ điều hướng đến trang chủ
                 req.session.save(() => {
