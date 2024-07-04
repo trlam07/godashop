@@ -2,8 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv')
 const ejsLayouts = require('express-ejs-layouts');
 const path = require('path');
-const bodyParser = require('body-parser')
-const session = require('express-session')
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
 
 const app = express();
 const port = 3000;
@@ -32,10 +34,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+var fileStoreOptions = {};
 app.use(session({
+    store: new FileStore(fileStoreOptions),
     secret: 'con ga đang ăn  thóc',
     resave: false,
     saveUninitialized: true,
+    //cookie: {secure: true}
   }))
 
 const indexRouter = require('./routers/IndexRouter');

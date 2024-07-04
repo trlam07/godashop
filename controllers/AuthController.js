@@ -18,8 +18,6 @@ class AuthController {
             }
 
             if(!bcrypt.compareSync(password, customer.password)) {
-                console.log('password', password)
-                console.log('customer.password', customer.password)
                 req.session.message_error = 'Lỗi: mật khẩu không đúng!';
                 //sau khi session được lưu thì sẽ điều hướng đến trang chủ
                 req.session.save(() => {
@@ -43,6 +41,7 @@ class AuthController {
                 //điều hướng vào trang thông tin cá nhân (làm sau)
                 res.redirect('/')
             });
+
 
         } catch (error) {
             res.status(500).send(error.message)

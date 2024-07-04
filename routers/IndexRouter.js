@@ -5,7 +5,7 @@ const ProductController = require('../controllers/ProductController');
 const InformationController = require('../controllers/InformationController');
 const ContactController = require('../controllers/ContactController');
 const AuthController = require('../controllers/AuthController');
-
+const CustomerController = require('../controllers/CustomerController');
 // hiển thị trang chủ
 router.get('/', HomeController.index)
 
@@ -42,5 +42,11 @@ router.post('/comments', ProductController.storeComment)
 
 //login
 router.post('/login', AuthController.login)
+
+//thông tin tk
+router.get('/thong-tin-tai-khoan.html', CustomerController.show)
+
+//thông tin tk
+router.get('/dia-chi-giao-hang-mac-dinh.html', CustomerController.shippingDefault)
 
 module.exports = router;
