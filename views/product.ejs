@@ -19,9 +19,12 @@
     </div>
     <div class="button-product-action clearfix">
         <div class="cart icon">
-            <a class="btn btn-outline-inverse buy" product-id="2" href="javascript:void(0)" title="Thêm vào giỏ">
+
+            <% if(product.inventory_qty > 0) {%>
+            <a class="btn btn-outline-inverse buy" product-id="<%= product.id%>" href="javascript:void(0)" title="Thêm vào giỏ">
             Thêm vào giỏ <i class="fa fa-shopping-cart"></i>
             </a>
+            <%} %>
         </div>
         <div class="quickview icon">
             <a class="btn btn-outline-inverse" href="<%= helpers.genRouteProductDetail(product)%>" title="Xem nhanh">

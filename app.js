@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(ejsLayouts)
 //import global helpers cho toàn bộ project
 const helpers = require('./utils/helpers');
 app.locals.helpers = helpers; //đưa helpers vào app
+//middleware
+app.use(cookieParser());
 
 //views là đường dẫn dẫn đến thư mục
 app.set('views', './views')

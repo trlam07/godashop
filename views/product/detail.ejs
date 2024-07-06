@@ -69,6 +69,16 @@
                 <%= helpers.formatMoney(product.sale_price)%>₫
               </span>
             </div>
+
+            <% if(product.inventory_qty > 0) {%>
+            <div class="input-group">
+              <input type="number" class="product-quantity form-control" value="1" min="1" fdprocessedid="evwejg">
+              <a href="javascript:void(0)" product-id="<%= product.id%>" class="buy-in-detail btn btn-success cart-add-button">
+                  <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+              </a>
+          </div>       
+          <%}%>  
+
           </div>
         </div>
         <div class="row product-description">

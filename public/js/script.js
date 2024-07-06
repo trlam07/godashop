@@ -10,6 +10,38 @@ function closeMenuMobile() {
 
 //document ready: toàn bộ trang web được tải lên, code bên trong {...} mới chạy
 $(function () {
+    // hiển thị thông tin giỏ hàng
+    displayCart();
+    // // Thêm sản phẩm vào giỏ hàng
+    $("main .buy-in-detail").click(function (event) {
+        /* Act on the event */
+        var qty = $(this).prev("input").val();
+        var product_id = $(this).attr("product-id");
+        $.ajax({
+            url: '/cart/add',
+            type: 'GET',
+            data: { product_id: product_id, qty: qty }
+        })
+            .done(function () {
+                displayCart();
+
+            });
+    });
+
+    // / Thêm sản phẩm vào giỏ hàng
+    $("main .buy").click(function (event) {
+
+        var product_id = $(this).attr("product-id");
+        $.ajax({
+            url: '/cart/add',
+            type: 'GET',
+            data: { product_id: product_id, qty: 1 }
+        })
+            .done(function () {
+                // console.log(data);
+                displayCart();
+            });
+    });
     // SUBMIT COMMENT
     $("form.form-comment").validate({
         rules: {
@@ -326,4 +358,97 @@ function goToPage(page) {
     var fullUrl = getUpdatedParam("page", page);
     window.location.href = fullUrl;
     // window.location.href = 'https://vnexpress.net';
+}
+
+// Hiển thị cart
+function displayCart() {
+    const data = getCookie('cart');
+    if (!data) return;
+
+    //chuyển chuỗi dạng Json thành object
+    var cart = JSON.parse(data);
+
+    var total_product_number = cart.total_product_number;
+    $(".btn-cart-detail .number-total-product").html(total_product_number);
+
+    var total_price = cart.total_price;
+    $("#modal-cart-detail .price-total").html(number_format(total_price) + "₫");
+    var items = cart.items;
+    var rows = "";
+    for (let i in items) {
+        let item = items[i];
+        var row = `
+        <hr>
+        <div class="clearfix text-left">
+            <div class="row">
+                <div class="col-sm-6 col-md-1">
+                    <div>
+                        <img class="img-responsive" src="/images/${item.img}" alt="${item.name}">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <a class="product-name" href="${item.url}"> ${item.name}</a>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <span class="product-item-discount">${number_format(Math.round(item.unit_price))}₫</span>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <input type="hidden" value="1">
+                    <input type="number" onchange="updateProductInCart(this, ${item.product_id})" min="1" value="${item.qty}">
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <span> ${number_format(Math.round(item.total_price))}₫</span>
+                </div>
+                <div class="col-sm-6 col-md-1">
+                    <a class="remove-product" href="javascript:void(0)" onclick="deleteProductInCart(${item.product_id})">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
+            </div>
+        </div>`;
+        rows += row;
+    }
+    $("#modal-cart-detail .cart-product").html(rows);
+}
+// Lấy giá trị của một cookie cụ thể
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function deleteProductInCart(product_id) {
+    $.ajax({
+        url: '/cart/delete',
+        type: 'GET',
+        data: { product_id: product_id }
+    })
+        .done(function () {
+            displayCart();
+
+        });
+}
+
+// Thay đổi số lượng sản phẩm trong giỏ hàng
+function updateProductInCart(self, product_id) {
+    var qty = $(self).val();
+    $.ajax({
+        url: '/cart/update',
+        type: 'GET',
+        data: { product_id: product_id, qty: qty }
+    })
+        .done(function () {
+            displayCart();
+
+        });
 }
